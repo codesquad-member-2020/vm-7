@@ -1,1 +1,2 @@
-# vm-7
+# web-vending-machine
+Huey
