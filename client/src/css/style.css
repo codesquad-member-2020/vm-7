@@ -1,0 +1,91 @@
+.wrap {
+
+}
+
+.container {
+
+}
+
+/*상품 화면 production-view */
+.production-view {
+  float: left;
+  width: 500px;
+}
+.production-view-container {
+  margin: 0 auto;
+  width: 400px;
+}
+
+.prod-name {
+  /* line-height: 70px; */
+}
+
+.production-view-container h1 {
+  text-align: center;
+}
+
+.production-view ul {
+  border: 1px solid black;
+  width: 360px;
+  height: 350px;
+  margin: 0 auto;
+}
+
+.production-view ul li {
+  position: relative;
+  float: left;
+  margin: 15px 10px;
+  width: 70px;
+  height: 50px;
+  background-color: #42b883;
+  text-align: center;
+}
+
+.prod-price {
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 상품 선택 화면 production-select-view */
+.production-select-view {
+  float: left;
+}
+
+.select-number ul {
+  width: 300px;
+}
+
+.select-number li {
+  float: left;
+  width: 80px;
+  margin: 5px 5px;
+  text-align: center;
+}
+
+.prod-index {
+  display: none;
+}
+
+/* 지갑 화면 wallet-view */
+.wallet-view {
+  float: left;
+}
+
+.wallet-view ul {
+  width: 300px;
+}
+
+.wallet-view ul li {
+  height: 40px;
+}
+
+/* style */
+.prod-selected {
+  outline: 3px solid red;
+}
+
+
+
+
