@@ -17,7 +17,7 @@ class WalletView {
   }
 
   initRender(walletData) {
-    $('.wallet-view').innerHTML = this.initTemplate(walletData)
+    this.walletViewArea.innerHTML = this.initTemplate(walletData)
     
   }
 

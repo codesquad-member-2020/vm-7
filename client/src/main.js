@@ -14,12 +14,14 @@ import {$} from './utils/index.js'
 
 // view
 const productView = new ProductView({
-  productComponent: new ProductComponent()
+  productComponent: new ProductComponent(),
+  productArea: $('.product-view')
 })
 const productSelectView = new ProductSelectView({
   inputCashComponent: new InputCashComponent(),
   selectNumberComponent: new SelectNumberComponent(),
-  logComponent: new LogComponent()
+  logComponent: new LogComponent(),
+  productSelectArea: $('.production-select-view')
 })
 const walletView = new WalletView({
   walletInfoComponent: new WalletInfoComponent(),
