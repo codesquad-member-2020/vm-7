@@ -1,14 +1,14 @@
 import {Router} from 'express';
-import productData from '../db/productData.json'
+import walletData from '../db/walletData.json'
 
 const router = Router()
 
 router.get('/', (req, res) => {
   try {
     // console.log(productData)
-    res.send(productData)
+    res.send(walletData)
   } catch (error) {
-    console.log('productData')
+    console.log('walletData')
   }
 })
 

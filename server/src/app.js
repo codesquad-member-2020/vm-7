@@ -5,8 +5,8 @@ import chalk from 'chalk';
 import detectPort from 'detect-port';
 
 // api
-import user from './api/user.js'
-// import machine from './api/machine'
+import wallet from './api/wallet.js'
+import machine from './api/machine.js'
 
 // utils
 
@@ -24,8 +24,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // express routers
-// app.use('/machine', machine);
-app.use('/user', user);
+app.use('/product', machine);
+app.use('/wallet', wallet);
 
 // start
 app.listen(port, () =>
