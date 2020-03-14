@@ -1,12 +1,13 @@
 import {$} from '../utils/index.js'
 
 class ProductView {
-  constructor({productComponent}) {
+  constructor({productComponent, productArea}) {
     this.productComponent = productComponent
+    this.productArea = productArea
   }
 
   initRender(data) {
-    $('.product-view').innerHTML = this.initTemplate(data);
+    this.productArea.innerHTML = this.initTemplate(data);
   }
 
   initTemplate(data) {

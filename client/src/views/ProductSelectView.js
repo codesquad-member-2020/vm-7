@@ -5,16 +5,18 @@ class ProductSelectView {
   constructor({
     inputCashComponent, 
     selectNumberComponent,
-    logComponent
+    logComponent,
+    productSelectArea
   }) {
     this.inputCashComponent = inputCashComponent
     this.selectNumberComponent = selectNumberComponent
     this.logComponent = logComponent
-    this.arrComponent = [this.inputCashComponent, this.selectNumberComponent, this.logComponent]
+    this.arrComponent = [this.inputCashComponent, this.selectNumberComponent, this.logComponent],
+    this.productSelectArea = productSelectArea
   }
 
   initRender() {
-    $('.production-select-view').innerHTML = this.initTemplate()
+    this.productSelectArea.innerHTML = this.initTemplate()
   }
   
   initTemplate() {
