@@ -1,7 +1,7 @@
 class ProductModel {
-  constructor({productView}) {
+  constructor({productView,PRODUCT_URL}) {
     this.productView = productView
-    this.PRODUCT_URL = 'http://localhost:3000/product' 
+    this.PRODUCT_URL = PRODUCT_URL
   }
 
   async fetchData() {
