@@ -1,8 +1,8 @@
 class ProductModel {
-  constructor({productSelectView, walletView}) {
+  constructor({productSelectView, walletView, USER_URL}) {
     this.productSelectView = productSelectView,
     this.walletView = walletView
-    this.WALLET_URL = 'http://localhost:3000/wallet'
+    this.WALLET_URL = USER_URL
     this.walletData = {}
   }
 

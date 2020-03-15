@@ -10,7 +10,7 @@ import SelectNumberComponent from './components/selectNumberComponent.js'
 import LogComponent from './components/logComponent.js'
 import WalletInfoComponent from './components/walletInfoComponent.js'
 import TotalCashComponent from './components/totalCashComponent.js'
-import {$} from './utils/index.js'
+import {$, PRODUCT_URL, USER_URL} from './utils/index.js'
 
 // view
 const productView = new ProductView({
@@ -31,11 +31,13 @@ const walletView = new WalletView({
 
 // model
 const productModel = new ProductModel({
-  productView
+  productView,
+  PRODUCT_URL
 })
 const userModel = new UserModel({
   productSelectView,
-  walletView
+  walletView,
+  USER_URL
 })
 
 // controller

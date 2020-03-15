@@ -2,6 +2,10 @@ export const $ = el => document.querySelector(el);
 export const $$ = el => document.querySelectorAll(el);
 const sleep = ms => new Promise(resolve  => setTimeout(resolve, ms));
 
+
+export const PRODUCT_URL='http://localhost:3000/product'
+export const USER_URL='http://localhost:3000/wallet' 
+
 const KEYUP = 38;
 const KEYDOWN = 40;
 const ENTER = 13;
