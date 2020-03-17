@@ -12,38 +12,53 @@ import WalletInfoComponent from './components/walletInfoComponent.js'
 import TotalCashComponent from './components/totalCashComponent.js'
 import {$, PRODUCT_URL, USER_URL} from './utils/index.js'
 
-// view
-const productView = new ProductView({
-  productComponent: new ProductComponent(),
-  productArea: $('.product-view')
-})
-const productSelectView = new ProductSelectView({
-  inputCashComponent: new InputCashComponent(),
-  selectNumberComponent: new SelectNumberComponent(),
-  logComponent: new LogComponent(),
-  productSelectArea: $('.production-select-view')
-})
-const walletView = new WalletView({
-  walletInfoComponent: new WalletInfoComponent(),
-  totalCashComponent: new TotalCashComponent(),
-  walletViewArea: $('.wallet-view')
-})
 
 // model
 const productModel = new ProductModel({
-  productView,
   PRODUCT_URL
 })
 const userModel = new UserModel({
-  productSelectView,
-  walletView,
   USER_URL
+})
+
+//component
+const selectNumberComponent = new SelectNumberComponent()
+const walletInfoComponent = new WalletInfoComponent({
+  userModel
+})
+const totalCashComponent = new TotalCashComponent({
+  userModel
+})
+const inputCashComponent = new InputCashComponent({
+  userModel
+})
+
+
+// view
+const productView = new ProductView({
+  productComponent: new ProductComponent(),
+  productModel,
+  productArea: $('.product-view')
+})
+const productSelectView = new ProductSelectView({
+  inputCashComponent,
+  selectNumberComponent,
+  logComponent: new LogComponent(),
+  userModel,
+  productSelectArea: $('.production-select-view')
+})
+const walletView = new WalletView({
+  walletInfoComponent,
+  totalCashComponent,
+  userModel,
+  walletViewArea: $('.wallet-view')
 })
 
 // controller
 const controller = new Controller({
   model : { productModel, userModel },
-  view: { productView, productSelectView, walletView }
+  view: { productView, productSelectView, walletView },
+  component: {selectNumberComponent, walletInfoComponent}
 })
 
 document.addEventListener("DOMContentLoaded", () => {
