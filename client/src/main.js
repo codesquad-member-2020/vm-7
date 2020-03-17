@@ -33,10 +33,14 @@ const inputCashComponent = new InputCashComponent({
   userModel
 })
 
+const productComponent =  new ProductComponent({
+  userModel
+})
+
 
 // view
 const productView = new ProductView({
-  productComponent: new ProductComponent(),
+  productComponent,
   productModel,
   productArea: $('.product-view')
 })
