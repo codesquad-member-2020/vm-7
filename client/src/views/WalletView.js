@@ -4,21 +4,18 @@ class WalletView {
   constructor({
     walletInfoComponent, 
     totalCashComponent,
+    userModel,
     walletViewArea
   }) {
     this.walletInfoComponent = walletInfoComponent,
-    this.totalCashComponent = totalCashComponent
-    this.walletViewArea = walletViewArea
-    this.initialize()
-  }
-
-  initialize() {
-    this.eventHandler()
+    this.totalCashComponent = totalCashComponent,
+    this.userModel = userModel,
+    this.walletViewArea = walletViewArea,
+    this.registerObserver()
   }
 
   initRender(walletData) {
     this.walletViewArea.innerHTML = this.initTemplate(walletData)
-    
   }
 
   initTemplate(walletData) {
@@ -27,10 +24,9 @@ class WalletView {
       ${this.totalCashComponent.render()}`
   }
 
-  eventHandler() {
-    this.walletViewArea.addEventListener("click", e => console.log(e))
+  registerObserver() {
+    this.userModel.addEvent("initWalletViewRender", this.initRender.bind(this))
   }
-
 }
 
 export default WalletView
