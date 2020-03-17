@@ -1,13 +1,27 @@
+import {$} from '../utils/index.js'
+
 class TotalCashComponent {
-  constructor(data) {
-    
+  constructor({ userModel }) {
+    this.userModel = userModel
+    this.totalPrice = 0
+    this.registerObserver()
   }
-  render(data = 23550) {
+  render(data = 24100) {
     return `
-      <div class="wallet-sum">
-        <b>${data}</b>원
+      <div>
+        <b class="wallet-sum">${data}원</b>
       </div>
     `
+  }
+
+  registerObserver() {
+    this.userModel.addEvent("totalWalletData", this.changeRenderTotalPrice.bind(this))
+  }
+
+  changeRenderTotalPrice(totalPrice) {
+    if(this.totalPrice === totalPrice) return 
+    this.totalPrice = totalPrice
+    $(".wallet-sum").innerText = `${totalPrice}원`
   }
 }
 
