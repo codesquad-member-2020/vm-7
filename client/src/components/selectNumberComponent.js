@@ -2,7 +2,6 @@ import {$} from '../utils/index.js'
 
 class SelectNumberComponent {
   constructor() {
-    
   }
   render() {
     return `
@@ -22,6 +21,14 @@ class SelectNumberComponent {
           <li><button value="check">확인</button></li>
         </ul>
       </div>`
+  }
+
+  eventHandler() {
+    $('.production-select-view').addEventListener("click", this.eventWalletbutton)
+  }
+
+  eventWalletbutton(e) {
+    console.log(e)
   }
 }
 
