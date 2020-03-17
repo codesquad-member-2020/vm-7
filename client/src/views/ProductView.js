@@ -1,9 +1,9 @@
-import {$} from '../utils/index.js'
-
 class ProductView {
-  constructor({productComponent, productArea}) {
+  constructor({productComponent, productModel, productArea}) {
     this.productComponent = productComponent
+    this.productModel = productModel,
     this.productArea = productArea
+    this.registerObserver()
   }
 
   initRender(data) {
@@ -12,6 +12,10 @@ class ProductView {
 
   initTemplate(data) {
     return this.productComponent.render(data)
+  }
+
+  registerObserver() {
+    this.productModel.addEvent("initProductViewRender", this.initRender.bind(this))
   }
 }
 
