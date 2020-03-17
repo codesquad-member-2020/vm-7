@@ -6,16 +6,19 @@ class ProductSelectView {
     inputCashComponent, 
     selectNumberComponent,
     logComponent,
+    userModel,
     productSelectArea
   }) {
     this.inputCashComponent = inputCashComponent
     this.selectNumberComponent = selectNumberComponent
     this.logComponent = logComponent
     this.arrComponent = [this.inputCashComponent, this.selectNumberComponent, this.logComponent],
+    this.userModel = userModel
     this.productSelectArea = productSelectArea
+    this.registerObserver()
   }
 
-  initRender() {
+  initRender(data) {
     this.productSelectArea.innerHTML = this.initTemplate()
   }
   
@@ -24,10 +27,12 @@ class ProductSelectView {
       list+= item.render()
       return list
     },"")
-    // console.log(selectList)
     return selectList
   }
-  
+
+  registerObserver() {
+    this.userModel.addEvent("initSelectViewRender", this.initRender.bind(this))
+  }
 }
 
 export default ProductSelectView;
