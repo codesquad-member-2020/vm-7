@@ -33,20 +33,22 @@ class UserModel extends Observer {
   changeExpenseInfo({target: {value}}) {
     this.expense.filter(targetValue => 
         targetValue.value == value)
-      .map(data => {
-        data.number += 1;
+      .map(expenseWallet => {
+        expenseWallet.number += 1;
     });
     const expenseTotal = this.computedTotalPrice(this.expense)
     this.fireEvent("changeExpenseData", expenseTotal)
+    this.fireEvent("highlightProduct", expenseTotal)
   }
 
   changeWalletInfo({target: {value}}) {
     const targetData = this.walletData
       .filter(targetValue => 
         targetValue.value == value)
-      .map(data => {
-        if (data.number > 0 ) data.number -= 1;
-      return data
+      .map(wallet => {
+        if (wallet.number > 0 ) wallet.number -= 1;
+
+      return wallet
     });
     this.fireEvent("changeWalletData", ...targetData);
 
