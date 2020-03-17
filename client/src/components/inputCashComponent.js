@@ -1,8 +1,9 @@
 import {$} from '../utils/index.js'
 
 class InputNumberComponent {
-  constructor() {
-    // $('.production-select-view').innerHTML = this.render();
+  constructor({userModel}) {
+    this.userModel = userModel
+    this.registerObserver()
   }
   render(data = 0) {
     return `
@@ -11,6 +12,14 @@ class InputNumberComponent {
           투입 금액 : <span class="price">${data}</span><span>원</span>
       </div>
     </div>`
+  }
+
+  registerObserver() {
+    this.userModel.addEvent("changeExpenseData", this.changeRenderExpense.bind(this))
+  }
+
+  changeRenderExpense(expenseTotal) {
+    $('.price').innerText = expenseTotal
   }
 }
 
