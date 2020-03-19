@@ -1,3 +1,5 @@
+데모 : https://hu2y.github.io/vending-machine/index.html
+
 # web-vending-machine
 
 ### 고민하거나 개선했던 사항 그냥 기록...
