@@ -1,8 +1,9 @@
 import { $$ } from '../utils/index.js'
 
 class ProductComponent {
-  constructor({ userModel }) {
+  constructor({ userModel, productModel }) {
     this.userModel = userModel
+    this.productModel = productModel
     this.registerObserver()
   }
   render(data) {
@@ -22,12 +23,19 @@ class ProductComponent {
   }
 
   registerObserver() {
+    this.productModel.addEvent("highlightInitRedner", this.highlightProductRedner.bind(this))
     this.userModel.addEvent("highlightProduct", this.highlightProductRedner.bind(this));
+  }
+
+  initRender(productPriceList) {
+    [...productPriceList].forEach(productList => 
+      productList.parentNode.classList.remove('prod-selected'))
   }
   
   highlightProductRedner(inputData) {
     const productPriceList = $$('.prod-price');
-    
+    this.initRender(productPriceList);
+
     [...productPriceList]
       .filter(price => 
         price.innerText <= parseInt(inputData))
