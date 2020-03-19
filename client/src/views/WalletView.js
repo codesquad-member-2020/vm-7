@@ -1,5 +1,3 @@
-import {$} from '../utils/index.js'
-
 class WalletView {
   constructor({
     walletInfoComponent, 

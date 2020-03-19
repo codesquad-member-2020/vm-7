@@ -1,6 +1,3 @@
-import {$} from '../utils/index.js'
-
-
 class ProductSelectView {
   constructor({
     selectProductComponent,

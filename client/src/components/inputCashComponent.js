@@ -21,7 +21,6 @@ class InputNumberComponent {
   }
 
   changeRenderExpense(expenseTotal) {
-    console.log(expenseTotal)
     $('.price').innerText = expenseTotal
   }
 }

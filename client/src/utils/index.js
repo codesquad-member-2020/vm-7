@@ -22,15 +22,3 @@ Array.prototype.selectClassList = function ({targetClass, method, addClassName, 
     return
   }
 }
-
-const COIN_10 = 10
-const COIN_50 = 50
-const COIN_100 = 100
-const COIN_500 = 500
-const COIN_1000 = 1000
-const COIN_5000 = 5000
-const COIN_10000 = 10000
-
-function sumPrice({coin_10, coin_50, coin_100, coin_500, coin_1000, coin_5000, coin_10000}) {
-  return coin_10*COIN_10 + coin_50*COIN_50 + coin_100*COIN_100 + coin_500*COIN_500 + coin_1000*COIN_1000 + coin_5000*COIN_5000 + coin_10000*COIN_10000
-}

@@ -6,7 +6,7 @@ class TotalCashComponent {
     this.totalPrice = 0
     this.registerObserver()
   }
-  render(data = 24100) {
+  render(data= 24100) {
     return `
       <div>
         <b class="wallet-sum">${data}원</b>

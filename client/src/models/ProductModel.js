@@ -48,13 +48,11 @@ class ProductModel extends Observer {
     const targetProduct = this.productData
       .filter(productIndex => 
         productIndex.index == this.productNumber)
-      // .map(target => target.price)
     const targetPrice = targetProduct[0].price
     const selectProduct = targetProduct[0].name
 
-    if(inputPrice < targetPrice) {
-      return this.priceErrorLog()
-    }
+    if(inputPrice < targetPrice) return this.priceErrorLog()
+    
     this.balanceData = inputPrice - targetPrice
     this.getSuccessLog(selectProduct)
     this.productNumber = 0
