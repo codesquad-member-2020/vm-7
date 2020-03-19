@@ -3,16 +3,18 @@ import {$} from '../utils/index.js'
 
 class ProductSelectView {
   constructor({
+    selectProductComponent,
     inputCashComponent, 
     selectNumberComponent,
     logComponent,
     userModel,
     productSelectArea
   }) {
+    this.selectProductComponent = selectProductComponent
     this.inputCashComponent = inputCashComponent
     this.selectNumberComponent = selectNumberComponent
     this.logComponent = logComponent
-    this.arrComponent = [this.inputCashComponent, this.selectNumberComponent, this.logComponent],
+    this.arrComponent = [this.selectProductComponent, this.inputCashComponent, this.selectNumberComponent, this.logComponent],
     this.userModel = userModel
     this.productSelectArea = productSelectArea
     this.registerObserver()

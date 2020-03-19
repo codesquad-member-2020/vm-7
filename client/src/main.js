@@ -5,6 +5,7 @@ import ProductSelectView from './views/ProductSelectView.js'
 import ProductView from './views/ProductView.js'
 import WalletView from './views/WalletView.js'
 import ProductComponent from './components/productComponent.js'
+import SelectProductComponent from './components/selectProductComponent.js'
 import InputCashComponent from './components/inputCashComponent.js'
 import SelectNumberComponent from './components/selectNumberComponent.js'
 import LogComponent from './components/logComponent.js'
@@ -22,21 +23,30 @@ const userModel = new UserModel({
 })
 
 //component
-const selectNumberComponent = new SelectNumberComponent()
+const selectNumberComponent = new SelectNumberComponent({
+  productModel
+})
 const walletInfoComponent = new WalletInfoComponent({
-  userModel
+  userModel,
+  productModel
 })
 const totalCashComponent = new TotalCashComponent({
   userModel
 })
+const selectProductComponent = new SelectProductComponent({
+  productModel
+})
 const inputCashComponent = new InputCashComponent({
-  userModel
+  userModel,
+  productModel
 })
-
 const productComponent =  new ProductComponent({
-  userModel
+  userModel,
+  productModel
 })
-
+const logComponent = new LogComponent({
+  productModel
+})
 
 // view
 const productView = new ProductView({
@@ -45,9 +55,10 @@ const productView = new ProductView({
   productArea: $('.product-view')
 })
 const productSelectView = new ProductSelectView({
+  selectProductComponent,
   inputCashComponent,
   selectNumberComponent,
-  logComponent: new LogComponent(),
+  logComponent,
   userModel,
   productSelectArea: $('.production-select-view')
 })

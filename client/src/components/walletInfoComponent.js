@@ -1,8 +1,9 @@
 import {$} from '../utils/index.js'
 
 class WalletInfoComponent {
-  constructor({ userModel }) {
+  constructor({ userModel, productModel }) {
     this.userModel = userModel
+    this.productModel = productModel
     this.registerObserver()
   }
 
@@ -31,6 +32,7 @@ class WalletInfoComponent {
     if(e.target.nextElementSibling.innerText == 0) return
     this.userModel.changeWalletInfo(e);
     this.userModel.changeExpenseInfo(e)
+    this.productModel.changeWalletLogInfo(e)
   }
 
   registerObserver() {
