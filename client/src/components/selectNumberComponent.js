@@ -1,34 +1,43 @@
 import {$} from '../utils/index.js'
 
 class SelectNumberComponent {
-  constructor() {
+  constructor({ productModel }) {
+    this.productModel = productModel
   }
   render() {
     return `
       <div class="select-number">
-        <ul>
-          <li><button value="number">1</button></li>
-          <li><button value="number">2</button></li>
-          <li><button value="number">3</button></li>
-          <li><button value="number">4</button></li>
-          <li><button value="number">5</button></li>
-          <li><button value="number">6</button></li>
-          <li><button value="number">7</button></li>
-          <li><button value="number">8</button></li>
-          <li><button value="number">9</button></li>
-          <li><button value="cancel">취소</button></li>
-          <li><button value="number">0</button></li>
-          <li><button value="check">확인</button></li>
-        </ul>
+          <button value="number">1</button>
+          <button value="number">2</button>
+          <button value="number">3</button>
+          <button value="number">4</button>
+          <button value="number">5</button>
+          <button value="number">6</button>
+          <button value="number">7</button>
+          <button value="number">8</button>
+          <button value="number">9</button>
+          <button value="cancel">취소</button>
+          <button value="number">0</button>
+          <button value="check">확인</button>
       </div>`
   }
 
   eventHandler() {
-    $('.production-select-view').addEventListener("click", this.eventWalletbutton)
+    $('.production-select-view').addEventListener("click", this.eventWalletbutton.bind(this))
   }
 
   eventWalletbutton(e) {
-    console.log(e)
+    const {target:{value, tagName }} = e
+    if(tagName !== "BUTTON") return
+    if(value === 'cancel') {
+      // console.log(e.target.value)
+    } else if (value === 'check') {
+      const inputPrice = $('.price').innerText
+      this.productModel.clickedCheckEvent(parseInt(inputPrice))
+    } else {
+      const productTypeCount = $('.product-list').childElementCount
+      this.productModel.changeSelectLogInfo(e, productTypeCount)
+    }
   }
 }
 

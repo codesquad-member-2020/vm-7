@@ -36,6 +36,9 @@ class UserModel extends Observer {
       .map(expenseWallet => {
         expenseWallet.number += 1;
     });
+    console.log(this.expense)
+
+    // 내일 잔돈반환 구현
     const expenseTotal = this.computedTotalPrice(this.expense)
     this.fireEvent("changeExpenseData", expenseTotal)
     this.fireEvent("highlightProduct", expenseTotal)
