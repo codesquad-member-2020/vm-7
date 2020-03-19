@@ -1,44 +1,52 @@
-import {$} from '../utils/index.js'
+import { $ } from "../utils/index.js";
 
 class SelectNumberComponent {
-  constructor({ productModel }) {
-    this.productModel = productModel
+  constructor({ userModel, productModel }) {
+    this.userModel = userModel;
+    this.productModel = productModel;
   }
   render() {
+    const buttonValue = [1, 2, 3, 4, 5, 6, 7, 8, 9, "취소", 0, "확인"];
+    const selectBtnRender = buttonValue
+      .map(buttonType => {
+        let targetValue;
+        switch (buttonType) {
+          case "확인":
+            targetValue = "check";
+            break;
+          case "취소":
+            targetValue = "cancel";
+            break;
+          default:
+            targetValue = "number";
+        }
+        return `<button value='${targetValue}'>${buttonType}</button>`;
+      }).join("");
+
     return `
       <div class="select-number">
-          <button value="number">1</button>
-          <button value="number">2</button>
-          <button value="number">3</button>
-          <button value="number">4</button>
-          <button value="number">5</button>
-          <button value="number">6</button>
-          <button value="number">7</button>
-          <button value="number">8</button>
-          <button value="number">9</button>
-          <button value="cancel">취소</button>
-          <button value="number">0</button>
-          <button value="check">확인</button>
-      </div>`
+         ${selectBtnRender}
+      </div>`;
   }
 
   eventHandler() {
-    $('.production-select-view').addEventListener("click", this.eventWalletbutton.bind(this))
+    $(".production-select-view").addEventListener("click", this.eventWalletbutton.bind(this));
   }
 
   eventWalletbutton(e) {
-    const {target:{value, tagName }} = e
-    if(tagName !== "BUTTON") return
-    if(value === 'cancel') {
-      // console.log(e.target.value)
-    } else if (value === 'check') {
-      const inputPrice = $('.price').innerText
-      this.productModel.clickedCheckEvent(parseInt(inputPrice))
+    const {target: { value, tagName }} = e;
+    const inputPrice = $(".price").innerText;
+
+    if (tagName !== "BUTTON") return;
+    if (value === "cancel") {
+      this.userModel.returnExpense(parseInt(inputPrice));
+    } else if (value === "check") {
+      this.productModel.clickedCheckEvent(parseInt(inputPrice));
     } else {
-      const productTypeCount = $('.product-list').childElementCount
-      this.productModel.changeSelectLogInfo(e, productTypeCount)
+      const productTypeCount = $(".product-list").childElementCount;
+      this.productModel.changeSelectLogInfo(e, productTypeCount);
     }
   }
 }
 
-export default SelectNumberComponent
+export default SelectNumberComponent;

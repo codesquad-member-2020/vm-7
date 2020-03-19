@@ -24,6 +24,7 @@ const userModel = new UserModel({
 
 //component
 const selectNumberComponent = new SelectNumberComponent({
+  userModel,
   productModel
 })
 const walletInfoComponent = new WalletInfoComponent({
@@ -45,6 +46,7 @@ const productComponent =  new ProductComponent({
   productModel
 })
 const logComponent = new LogComponent({
+  userModel,
   productModel
 })
 
