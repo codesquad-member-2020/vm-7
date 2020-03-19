@@ -1,4 +1,4 @@
-import {$} from '../utils/index.js'
+import {$, $$} from '../utils/index.js'
 
 class WalletInfoComponent {
   constructor({ userModel, productModel }) {
@@ -23,6 +23,15 @@ class WalletInfoComponent {
     `
   }
 
+  returnWalletRender(data) {
+    const walletNumber = $$('.wallet-list li span');
+
+    data.forEach((productNumber, index) => {
+      const targetPrice = walletNumber[index];
+      targetPrice.innerText = productNumber.number
+    });
+  }
+
   eventHandler() {
     $('.wallet-view').addEventListener("click", this.eventWalletbutton.bind(this));
   }
@@ -37,6 +46,7 @@ class WalletInfoComponent {
 
   registerObserver() {
     this.userModel.addEvent("changeWalletData", this.changeRenderWalletInfo.bind(this));
+    this.userModel.addEvent("returnExpenseRender", this.returnWalletRender.bind(this));
   }
 
   changeRenderWalletInfo(data) {

@@ -1,7 +1,8 @@
 import { $ } from '../utils/index.js'
 
 class LogComponent {
-  constructor({ productModel }) {
+  constructor({ userModel, productModel }) {
+    this.userModel = userModel
     this.productModel = productModel
     this.registerObserver()
   }
@@ -19,6 +20,8 @@ class LogComponent {
     this.productModel.addEvent("walletLogRender", this.walletLogRenderInfo.bind(this))
     this.productModel.addEvent("errorLog", this.errorLogRender.bind(this))
     this.productModel.addEvent("successLog", this.successLogRender.bind(this))
+    this.userModel.addEvent("errorLog", this.errorLogRender.bind(this))
+    this.userModel.addEvent("successLog", this.successLogRender.bind(this))
   }
 
   walletLogRenderInfo(logData) {
