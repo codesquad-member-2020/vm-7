@@ -21,6 +21,7 @@ class InputNumberComponent {
   }
 
   changeRenderExpense(expenseTotal) {
+    this.userModel.afterBuyPrice(expenseTotal)
     $('.price').innerText = expenseTotal
   }
 }

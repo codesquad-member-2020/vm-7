@@ -1,5 +1,4 @@
 import Observer from "../utils/observe.js"
-import {$} from '../utils/index.js'
 
 class ProductModel extends Observer {
   constructor({ PRODUCT_URL }) {
@@ -56,10 +55,14 @@ class ProductModel extends Observer {
     this.balanceData = inputPrice - targetPrice
     this.getSuccessLog(selectProduct)
     this.productNumber = 0
+    this.clickedCheckFireEvent(this.balanceData, this.productNumber)
+    
+  }
 
-    this.fireEvent("highlightInitRedner", this.balanceData)
-    this.fireEvent("changeExpenseData", this.balanceData)
-    this.fireEvent("selectLogRender", this.productNumber)
+  clickedCheckFireEvent(balanceData, productNumber) {
+    this.fireEvent("highlightInitRedner", balanceData)
+    this.fireEvent("changeExpenseData", balanceData)
+    this.fireEvent("selectLogRender", productNumber)
   }
 
   purchaseErrorLog() {

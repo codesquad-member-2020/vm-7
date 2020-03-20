@@ -1,4 +1,5 @@
 import Observer from "../utils/observe.js";
+import {$} from '../utils/index.js'
 
 class UserModel extends Observer {
   constructor({ USER_URL }) {
@@ -37,9 +38,21 @@ class UserModel extends Observer {
         expenseWallet.number += 1;
       });
 
-    const expenseTotal = this.computedTotalPrice(this.expense);
-    this.fireEvent("changeExpenseData", expenseTotal);
-    this.fireEvent("highlightProduct", expenseTotal);
+      this.expenseTotal = this.computedTotalPrice(this.expense);
+      this.fireEvent("changeExpenseData", this.expenseTotal);
+      this.fireEvent("highlightProduct", this.expenseTotal);
+  }
+
+  afterBuyPrice(expenseTotal) {
+    let expense = expenseTotal;
+    this.initExpense()
+    this.expense.reverse().forEach(target => {
+      let data = parseInt(expense / target.value);
+      if(data > 0) {
+        target.number = data
+        expense = expense % target.value
+      }
+    })
   }
 
   changeWalletInfo({ target: { value } }) {
@@ -52,6 +65,7 @@ class UserModel extends Observer {
       });
     this.fireEvent("changeWalletData", ...targetData);
     const totalPirce = this.computedTotalPrice(this.walletData);
+    
     this.fireEvent("totalWalletData", totalPirce);
   }
 
@@ -59,13 +73,15 @@ class UserModel extends Observer {
     if (inputPrice === 0) {
       return this.fireEvent("errorLog", "반환 될 금액이 없습니다.");
     }
+
+    let hasWalletPrice = $('.wallet-sum').innerText
+    hasWalletPrice = hasWalletPrice.substr(0, hasWalletPrice.length -1)
     this.copyWalletData = JSON.parse(JSON.stringify(this.walletData));
-    this.changeWalletData(this.copyWalletData);
     this.changeWalletData(this.walletData);
     this.initExpense();
-    const expenseTotal = this.computedTotalPrice(this.expense);
-    const totalPrice = this.computedTotalPrice(this.copyWalletData);
-    this.fireObverserEvent(expenseTotal, this.copyWalletData, totalPrice);
+    this.expenseTotal = this.computedTotalPrice(this.expense);
+    const totalPrice = this.computedTotalPrice(this.walletData);
+    this.fireObverserEvent(this.expenseTotal, this.walletData, totalPrice);
   }
 
   changeWalletData(targetData) {
@@ -78,11 +94,11 @@ class UserModel extends Observer {
           (productNumber.number += filteredExpense[index].number));
   }
 
-  fireObverserEvent(expenseTotal, copyWalletData, totalPrice) {
+  fireObverserEvent(expenseTotal, walletData, totalPrice) {
     this.fireEvent("successLog", "투입된 금액이 반환되었습니다");
     this.fireEvent("highlightProduct", expenseTotal);
     this.fireEvent("changeExpenseData", expenseTotal);
-    this.fireEvent("returnExpenseRender", copyWalletData);
+    this.fireEvent("returnExpenseRender", walletData);
     this.fireEvent("totalWalletData", totalPrice);
   }
 }
